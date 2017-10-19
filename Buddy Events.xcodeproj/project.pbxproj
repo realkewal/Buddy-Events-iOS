@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		62F8C57A1F958CD9008F5DE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C5791F958CD9008F5DE2 /* AppDelegate.swift */; };
-		62F8C57C1F958CD9008F5DE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C57B1F958CD9008F5DE2 /* ViewController.swift */; };
 		62F8C57F1F958CD9008F5DE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62F8C57D1F958CD9008F5DE2 /* Main.storyboard */; };
 		62F8C5821F958CD9008F5DE2 /* Buddy_Events.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C5801F958CD9008F5DE2 /* Buddy_Events.xcdatamodeld */; };
 		62F8C5841F958CDA008F5DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62F8C5831F958CDA008F5DE2 /* Assets.xcassets */; };
 		62F8C5871F958CDA008F5DE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62F8C5851F958CDA008F5DE2 /* LaunchScreen.storyboard */; };
+		62F8C58F1F95BB7C008F5DE2 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C58E1F95BB7C008F5DE2 /* FriendsViewController.swift */; };
+		62F8C5911F95BBA7008F5DE2 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C5901F95BBA7008F5DE2 /* EventsViewController.swift */; };
+		62F8C5931F95BC62008F5DE2 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C5921F95BC62008F5DE2 /* AddFriendViewController.swift */; };
+		62F8C5951F95E04B008F5DE2 /* picture.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F8C5941F95E04B008F5DE2 /* picture.png */; };
+		62F8C5971F95E6E8008F5DE2 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C5961F95E6E8008F5DE2 /* AddEventViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		62F8C5761F958CD9008F5DE2 /* Buddy Events.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Buddy Events.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F8C5791F958CD9008F5DE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		62F8C57B1F958CD9008F5DE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		62F8C57E1F958CD9008F5DE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62F8C5811F958CD9008F5DE2 /* Buddy_Events.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Buddy_Events.xcdatamodel; sourceTree = "<group>"; };
 		62F8C5831F958CDA008F5DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62F8C5861F958CDA008F5DE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62F8C5881F958CDA008F5DE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62F8C58E1F95BB7C008F5DE2 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
+		62F8C5901F95BBA7008F5DE2 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		62F8C5921F95BC62008F5DE2 /* AddFriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		62F8C5941F95E04B008F5DE2 /* picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = picture.png; sourceTree = "<group>"; };
+		62F8C5961F95E6E8008F5DE2 /* AddEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddEventViewController.swift; path = ../AddEventViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				62F8C5791F958CD9008F5DE2 /* AppDelegate.swift */,
-				62F8C57B1F958CD9008F5DE2 /* ViewController.swift */,
+				62F8C5941F95E04B008F5DE2 /* picture.png */,
+				62F8C58E1F95BB7C008F5DE2 /* FriendsViewController.swift */,
+				62F8C5921F95BC62008F5DE2 /* AddFriendViewController.swift */,
+				62F8C5901F95BBA7008F5DE2 /* EventsViewController.swift */,
+				62F8C5961F95E6E8008F5DE2 /* AddEventViewController.swift */,
 				62F8C57D1F958CD9008F5DE2 /* Main.storyboard */,
 				62F8C5831F958CDA008F5DE2 /* Assets.xcassets */,
 				62F8C5851F958CDA008F5DE2 /* LaunchScreen.storyboard */,
@@ -129,6 +141,7 @@
 			files = (
 				62F8C5871F958CDA008F5DE2 /* LaunchScreen.storyboard in Resources */,
 				62F8C5841F958CDA008F5DE2 /* Assets.xcassets in Resources */,
+				62F8C5951F95E04B008F5DE2 /* picture.png in Resources */,
 				62F8C57F1F958CD9008F5DE2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,9 +153,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62F8C57C1F958CD9008F5DE2 /* ViewController.swift in Sources */,
+				62F8C5931F95BC62008F5DE2 /* AddFriendViewController.swift in Sources */,
+				62F8C5971F95E6E8008F5DE2 /* AddEventViewController.swift in Sources */,
+				62F8C58F1F95BB7C008F5DE2 /* FriendsViewController.swift in Sources */,
 				62F8C57A1F958CD9008F5DE2 /* AppDelegate.swift in Sources */,
 				62F8C5821F958CD9008F5DE2 /* Buddy_Events.xcdatamodeld in Sources */,
+				62F8C5911F95BBA7008F5DE2 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +322,7 @@
 				62F8C58D1F958CDA008F5DE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
