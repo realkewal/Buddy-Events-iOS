@@ -10,54 +10,32 @@ import UIKit
 import Foundation
 
 class FriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
 	
-	var friends : [Friends] = []
-	
-	
-	
-	
-	let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
 	var indexPath = Int()
 	var rowIndex = Int()
 	
-	
 	@IBOutlet weak var friendTableView: UITableView!
 	
-	
 	override func viewWillAppear(_ animated: Bool) {
-		
-		getFriendData() //get data from database
+		getFriends() //get data from database
 		friendTableView.reloadData() //reload the table view
 		rowIndex = -1
-		
 	}
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
-		
-		
-		
-        friendTableView.delegate = self
+		friendTableView.delegate = self
 		friendTableView.dataSource = self
 		
     }
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
-			let friend = friends[indexPath.row]
-			context.delete(friend)
-			(UIApplication.shared.delegate as! AppDelegate).saveContext()
-			
-			do {
-				friends = try context.fetch(Friends.fetchRequest())
-			} catch {
-				print("Could not get friends!")
-			}
+			deleteFriend(cellIndex: indexPath.row)
+			getFriends()
+			self.friendTableView.reloadData()
 		}
-		friendTableView.reloadData()
+		
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,55 +43,41 @@ class FriendsViewController: UIViewController, UITableViewDataSource, UITableVie
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = UITableViewCell()
-		let friend  = friends[indexPath.row]
-		let name = "\(friend.fname!) \(friend.lname!)"
-		cell.textLabel?.text = name
+		let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath)
+		getFriends() //get data from database
 		
+		if indexPath.row < friends.count {
+			let friend  = friends[indexPath.row]
+			let name = "\(friend.fname!) \(friend.lname!)"
+			let address = friend.address
+			cell.textLabel?.text = name
+			cell.detailTextLabel?.text = address
+			
+			
+			cell.imageView?.image = imageWithImage(image: UIImage(data: (friend.image!) as Data)!, scaledToSize: CGSize(width: 20, height: 20))
+			
+			
+		}
 		return cell
 	}
 	
-	
-	func getFriendData() {
-		do {
-			friends = try context.fetch(Friends.fetchRequest())
-		
-		} catch {
-			print("Could not get friends!")
-		}
-	}
-	
 	@IBAction func addFriendAction(_ sender: Any) {
-		
 		let secondController = AddFriendViewController()
-		
 		secondController.cellIndex = -1
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		
 		rowIndex = indexPath.row
-		
-		// Get Cell Label
 		let indexPath = tableView.indexPathForSelectedRow!
-		
-		//let currentCell = tableView.cellForRow(at: indexPath)! as UITableViewCell
-		
 		performSegue(withIdentifier: "addfriendsegue", sender: indexPath)
 		
 	}
 	
-	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		
 		if (segue.identifier == "addfriendsegue") {
-			
 			let secondController = segue.destination as! AddFriendViewController
-			
 			secondController.cellIndex = rowIndex
-			
 		}
-		
 	}
 	
 	

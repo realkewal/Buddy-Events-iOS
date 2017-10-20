@@ -8,17 +8,13 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class AddFriendViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 	
-	//Following line is used to interact with core data
-	
-	let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	
-	var friends : [Friends] = []
+
 	var cellIndex = -1
-	var selectedImage = UIImage()
-	
+
 	// Outlets for all elements used in Add/Edit Friend View Controller
 
 	@IBOutlet weak var firstNameTextField: UITextField!
@@ -28,11 +24,7 @@ class AddFriendViewController: UIViewController, UINavigationControllerDelegate,
 	@IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 	@IBOutlet weak var ageTextField: UITextField!
 	@IBOutlet weak var addressTextField: UITextField!
-	
-	
-	
-	
-	
+
 	// Following actions will be performed when Age Stepper is pressed
 	@IBAction func ageStepper(_ sender: Any) {
 		
@@ -44,76 +36,85 @@ class AddFriendViewController: UIViewController, UINavigationControllerDelegate,
 		
 		let image = UIImagePickerController()
 		image.delegate = self
-		
 		image.sourceType = UIImagePickerControllerSourceType.photoLibrary
-		
-		image.allowsEditing = false
-		
+		image.allowsEditing = true
 		self.present(image, animated: true)
 		
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		
-		if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			friendImageView.image = image
-			selectedImage = image
-			
-		} else {
-			//Display error message here
+		var selectedImage = UIImage()
+		if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+			 selectedImage = image
+		}
+		else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+			 selectedImage = image
+		} else{
+			print("Something went wrong")
 		}
 		
-		self.dismiss(animated: true, completion: nil)
+		self.dismiss(animated: true, completion: {
+			self.friendImageView.image = selectedImage
+		})
 	}
 	
 	// Following actions will be performed when Save button is pressed
 	@IBAction func saveFriendButton(_ sender: Any) {
+		var gender = String()
+		let fname = firstNameTextField.text!
+		let lname = lastNameTextField.text!
+		
+		let imgData = UIImageJPEGRepresentation(friendImageView.image!, 1)
+		
+		let image = imgData! as NSData
 
-		
-		let friend = Friends(context: context) // Object refers to entity in coredata
-		
-		
-		
-		//let objectID = friends[cellIndex].objectID
-		
-		friend.fname = firstNameTextField.text!
-		friend.lname = lastNameTextField.text!
-		let img = friendImageView.image
-		let imgData = UIImageJPEGRepresentation(img!, 1)
-		friend.image = imgData! as NSData
 		if genderSegmentedControl.selectedSegmentIndex == 0 {
-			friend.gender = "Male"
+			 gender = "Male"
 		} else if genderSegmentedControl.selectedSegmentIndex == 1 {
-			friend.gender = "Female"
+			 gender = "Female"
 		} else if genderSegmentedControl.selectedSegmentIndex == 2 {
-			friend.gender = "Other"
+			 gender = "Other"
 		}
-		friend.age = Int16(ageTextField.text!)!
-		friend.address = addressTextField.text!
 		
+		let age = Int16(ageTextField.text!)!
+		let address = addressTextField.text!
 		
+		if cellIndex == -1 {
+			addFriend(fname: fname, lname: lname, image: image, gender: gender, age: age, address: address)
+		} else {
+			updateFriend(fname: fname, lname: lname, image: image, gender: gender, age: age, address: address, cellIndex: cellIndex)
+		}
 		
-		(UIApplication.shared.delegate as! AppDelegate).saveContext() // Saves all the data to database
-		
-		
-	
-		
-		
-		
-		
-		
-		
+		navigationController?.popToRootViewController(animated: true) // Pops back to root view controller
 	}
 	
 	// Following actions will be performed when Delete (Trash) button is pressed
 	@IBAction func deleteFriendButton(_ sender: Any) {
+		if cellIndex > -1 {
+			deleteFriend(cellIndex: cellIndex)
+			navigationController?.popToRootViewController(animated: true)
+		}
+	}
+	
+	@IBAction func viewAddressButtonAction(_ sender: Any) {
+		
+		
+		
+	}
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "viewMap" {
+			let controller = segue.destination as! MapViewController
+			controller.address = addressTextField.text!
+			controller.name = "\(firstNameTextField.text!)'s Address"
+		}
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		
 		if cellIndex > -1  {
 
-			getFriendData()
+			getFriends()
 			
 			firstNameTextField.text = friends[cellIndex].fname
 			lastNameTextField.text = friends[cellIndex].lname
@@ -130,26 +131,6 @@ class AddFriendViewController: UIViewController, UINavigationControllerDelegate,
 			addressTextField.text = friends[cellIndex].address
 		}
 	}
-	
-	func getFriendData() {
-		
-		do {
-			friends = try context.fetch(Friends.fetchRequest())
-		} catch {
-			print("Could not get friends!")
-		}
-		
-	}
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-		
-		print(cellIndex)
-		
-    }
-	
-	
 	
 	
 }
