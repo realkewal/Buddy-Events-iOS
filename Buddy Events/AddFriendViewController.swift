@@ -32,9 +32,7 @@ class AddFriendViewController: UIViewController, UINavigationControllerDelegate,
 		
 	}
 
-	
-	
-	
+
 	// Following action will be used when browse button is pressed
 	@IBAction func browseImageButtonAction(_ sender: Any) {
 		

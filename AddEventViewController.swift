@@ -68,5 +68,13 @@ class AddEventViewController: UIViewController, UITextFieldDelegate {
 	}
 
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "viewEventMap" {
+			let controller = segue.destination as! MapViewController
+			controller.address = eventLocationTextField.text!
+			controller.name = "\(eventNameTextField.text!)'s Address"
+		}
+	}
+	
 
 }

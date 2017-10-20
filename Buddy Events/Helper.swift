@@ -209,22 +209,6 @@ func imageWithImage(image:UIImage,scaledToSize newSize:CGSize)->UIImage{
 }
 
 
-func checkForNilValues(values: Array<String>) -> Bool {
-	
-	var flag = false
-	
-	for val in values {
-		if val != ""{
-			flag = true
-		} else {
-			flag = false
-		}
-	}
-	
-	return flag
-}
-
-
 
 
 
