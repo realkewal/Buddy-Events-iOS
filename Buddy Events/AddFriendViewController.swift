@@ -10,13 +10,12 @@ import UIKit
 import Foundation
 import CoreData
 
-class AddFriendViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class AddFriendViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
 	
-
+	// set required variables
 	var cellIndex = -1
 
 	// Outlets for all elements used in Add/Edit Friend View Controller
-
 	@IBOutlet weak var firstNameTextField: UITextField!
 	@IBOutlet weak var lastNameTextField: UITextField!
 	@IBOutlet weak var friendImageView: UIImageView!
@@ -24,12 +23,17 @@ class AddFriendViewController: UIViewController, UINavigationControllerDelegate,
 	@IBOutlet weak var genderSegmentedControl: UISegmentedControl!
 	@IBOutlet weak var ageTextField: UITextField!
 	@IBOutlet weak var addressTextField: UITextField!
+	@IBOutlet weak var ageStepperButton: UIStepper!
 
 	// Following actions will be performed when Age Stepper is pressed
-	@IBAction func ageStepper(_ sender: Any) {
+	@IBAction func ageStepper(_ sender: UIStepper) {
 		
+			ageTextField.text =  Int(sender.value).description
 		
 	}
+
+	
+	
 	
 	// Following action will be used when browse button is pressed
 	@IBAction func browseImageButtonAction(_ sender: Any) {
@@ -60,6 +64,7 @@ class AddFriendViewController: UIViewController, UINavigationControllerDelegate,
 	
 	// Following actions will be performed when Save button is pressed
 	@IBAction func saveFriendButton(_ sender: Any) {
+		
 		var gender = String()
 		let fname = firstNameTextField.text!
 		let lname = lastNameTextField.text!
@@ -130,6 +135,33 @@ class AddFriendViewController: UIViewController, UINavigationControllerDelegate,
 			ageTextField.text = String(friends[cellIndex].age)
 			addressTextField.text = friends[cellIndex].address
 		}
+	}
+	
+	override func viewDidLoad() {
+		
+		firstNameTextField.delegate = self
+		lastNameTextField.delegate = self
+		ageTextField.delegate = self
+		addressTextField.delegate = self
+		
+		
+	}
+	
+	// Hide keyboard when user taps out of the keyboard
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
+	}
+	
+	// Hide keyboard when user taps on return key
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		
+		firstNameTextField.resignFirstResponder()
+		lastNameTextField.resignFirstResponder()
+		ageTextField.resignFirstResponder()
+		addressTextField.resignFirstResponder()
+		
+		return true
 	}
 	
 	

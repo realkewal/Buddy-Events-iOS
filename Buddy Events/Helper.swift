@@ -27,6 +27,10 @@ let context = getContext() // Get the managed object context from coredata
 
 func getFriends () {
 	do {
+		
+		let sectionSortDescriptor = NSSortDescriptor(key: "fname", ascending: true)
+		let sortDescriptors = [sectionSortDescriptor]
+		friendFetchRequest.sortDescriptors = sortDescriptors
 		friends = try getContext().fetch(friendFetchRequest)
 	} catch {
 		print("Error with request: \(error)")
@@ -202,13 +206,33 @@ func imageWithImage(image:UIImage,scaledToSize newSize:CGSize)->UIImage{
 	UIGraphicsEndImageContext()
 	
 	return newImage
-	
-//	UIGraphicsBeginImageContext( newSize )
-//	image.draw(in: CGRect(x: 0,y: 0,width: newSize.width,height: newSize.height))
-//	let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//	UIGraphicsEndImageContext()
-//	return newImage!.withRenderingMode(.alwaysOriginal)
 }
+
+
+func checkForNilValues(values: Array<String>) -> Bool {
+	
+	var flag = false
+	
+	for val in values {
+		if val != ""{
+			flag = true
+		} else {
+			flag = false
+		}
+	}
+	
+	return flag
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

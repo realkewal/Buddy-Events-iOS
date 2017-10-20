@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddEventViewController: UIViewController {
+class AddEventViewController: UIViewController, UITextFieldDelegate {
 	
 	var cellIndex = -1
 	
@@ -48,11 +48,24 @@ class AddEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let dateFormatter = DateFormatter()
-		let date = eventDatePicker.date
-		dateFormatter.timeZone = NSTimeZone.local
-		print("date is \(dateFormatter.string(from: date))")
+        eventNameTextField.delegate = self
+		eventLocationTextField.delegate = self
     }
+
+	// Hide keyboard when user taps out of the keyboard
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true)
+	}
+	
+	// Hide keyboard when user taps on return key
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		
+		eventNameTextField.resignFirstResponder()
+		eventLocationTextField.resignFirstResponder()
+		
+		return true
+	}
 
 	
 

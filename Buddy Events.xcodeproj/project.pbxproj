@@ -21,6 +21,7 @@
 		62F8C5C41F9955B0008F5DE2 /* sandtimerb.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F8C5C21F9955B0008F5DE2 /* sandtimerb.png */; };
 		62F8C5C51F9955B0008F5DE2 /* sandtimerf.png in Resources */ = {isa = PBXBuildFile; fileRef = 62F8C5C31F9955B0008F5DE2 /* sandtimerf.png */; };
 		62F8C5C71F997946008F5DE2 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C5C61F997946008F5DE2 /* MapViewController.swift */; };
+		62F8C5C91F99A571008F5DE2 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62F8C5C81F99A571008F5DE2 /* FriendTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		62F8C5C21F9955B0008F5DE2 /* sandtimerb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sandtimerb.png; sourceTree = "<group>"; };
 		62F8C5C31F9955B0008F5DE2 /* sandtimerf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sandtimerf.png; sourceTree = "<group>"; };
 		62F8C5C61F997946008F5DE2 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		62F8C5C81F99A571008F5DE2 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,16 +74,10 @@
 		62F8C5781F958CD9008F5DE2 /* Buddy Events */ = {
 			isa = PBXGroup;
 			children = (
-				62F8C5C21F9955B0008F5DE2 /* sandtimerb.png */,
-				62F8C5C31F9955B0008F5DE2 /* sandtimerf.png */,
+				62F8C5CA1F99B149008F5DE2 /* images */,
 				62F8C5791F958CD9008F5DE2 /* AppDelegate.swift */,
-				62F8C5941F95E04B008F5DE2 /* picture.png */,
-				62F8C58E1F95BB7C008F5DE2 /* FriendsViewController.swift */,
-				62F8C5921F95BC62008F5DE2 /* AddFriendViewController.swift */,
 				62F8C5C01F986311008F5DE2 /* Helper.swift */,
-				62F8C5901F95BBA7008F5DE2 /* EventsViewController.swift */,
-				62F8C5961F95E6E8008F5DE2 /* AddEventViewController.swift */,
-				62F8C5C61F997946008F5DE2 /* MapViewController.swift */,
+				62F8C5CB1F99B155008F5DE2 /* ViewControllers */,
 				62F8C57D1F958CD9008F5DE2 /* Main.storyboard */,
 				62F8C5831F958CDA008F5DE2 /* Assets.xcassets */,
 				62F8C5851F958CDA008F5DE2 /* LaunchScreen.storyboard */,
@@ -89,6 +85,29 @@
 				62F8C5801F958CD9008F5DE2 /* Buddy_Events.xcdatamodeld */,
 			);
 			path = "Buddy Events";
+			sourceTree = "<group>";
+		};
+		62F8C5CA1F99B149008F5DE2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				62F8C5C21F9955B0008F5DE2 /* sandtimerb.png */,
+				62F8C5C31F9955B0008F5DE2 /* sandtimerf.png */,
+				62F8C5941F95E04B008F5DE2 /* picture.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		62F8C5CB1F99B155008F5DE2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				62F8C58E1F95BB7C008F5DE2 /* FriendsViewController.swift */,
+				62F8C5921F95BC62008F5DE2 /* AddFriendViewController.swift */,
+				62F8C5901F95BBA7008F5DE2 /* EventsViewController.swift */,
+				62F8C5961F95E6E8008F5DE2 /* AddEventViewController.swift */,
+				62F8C5C61F997946008F5DE2 /* MapViewController.swift */,
+				62F8C5C81F99A571008F5DE2 /* FriendTableViewCell.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62F8C5C91F99A571008F5DE2 /* FriendTableViewCell.swift in Sources */,
 				62F8C5931F95BC62008F5DE2 /* AddFriendViewController.swift in Sources */,
 				62F8C5C11F986311008F5DE2 /* Helper.swift in Sources */,
 				62F8C5971F95E6E8008F5DE2 /* AddEventViewController.swift in Sources */,

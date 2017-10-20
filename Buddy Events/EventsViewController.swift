@@ -13,17 +13,13 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
 	
 	var indexPath = Int()
 	var rowIndex = -1
+	var longpress = false
 	
 	let dateFormatter = DateFormatter()
 	let timeFormatter = DateFormatter()
 	
 	@IBOutlet weak var eventTableView: UITableView!
 	
-	@IBOutlet weak var editEventButton: UIBarButtonItem!
-	
-	@IBAction func editFriendTableViewButton(_ sender: Any) {
-		eventTableView.setEditing(true, animated: true)
-	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		getEvents ()
@@ -35,7 +31,7 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
 		super.viewDidLoad()
 		eventTableView.delegate = self
 		eventTableView.dataSource = self
-		eventTableView.allowsMultipleSelectionDuringEditing = true
+		
 	}
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -54,7 +50,8 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
+		
+		let cell = eventTableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
 		getEvents ()
 		if indexPath.row < events.count {
 			let event = events[indexPath.row]
@@ -79,22 +76,15 @@ class EventsViewController: UIViewController, UITableViewDataSource, UITableView
 	}
 	
 	
-
-	
-	
-	
-	
-	
-	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		rowIndex = indexPath.row
 		let indexPath = tableView.indexPathForSelectedRow!
 		
+		
 		if eventTableView.isEditing == false {
-			performSegue(withIdentifier: "addEventSegue", sender: indexPath)
+				performSegue(withIdentifier: "addEventSegue", sender: indexPath)
 		}
-		
-		
+
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

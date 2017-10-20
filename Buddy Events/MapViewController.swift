@@ -29,9 +29,16 @@ class MapViewController: UIViewController {
 		activeSearch.start { (response, error) in
 		
 			if response == nil {
-				print("Could not find address")
+				let alert = UIAlertController(title: "Sorry!", message:
+					"Address not found!",
+					preferredStyle: .alert)
+				
+				alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .`default`, handler: { _ in
+					NSLog("The \"OK\" alert occured.")
+				}))
+				self.present(alert, animated: true, completion: nil)
 			} else {
-				//Remove annotations
+				//Remove any present annotations
 				let annotations = self.myMapView.annotations
 				self.myMapView.removeAnnotations(annotations)
 				
@@ -44,9 +51,7 @@ class MapViewController: UIViewController {
 				let coordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
 				let span = MKCoordinateSpanMake(0.1, 0.1)
 				let region = MKCoordinateRegionMake(coordinate, span)
-				
 				self.myMapView.setRegion(region, animated: true)
-				
 				
 				//create annotation
 				
@@ -57,25 +62,9 @@ class MapViewController: UIViewController {
 				self.myMapView.addAnnotation(annotation)
 				
 				
-				
-				
-				
-				
-				
 			}
 		}
 		
-//		let location = CLLocationCoordinate2D(latitude: 51.50007773,
-//		                                      longitude: -0.1246402)
-//		
-//		// 2
-//		let span = MKCoordinateSpanMake(0.05, 0.05)
-//		let region = MKCoordinateRegion(center: location, span: span)
-//		myMapView.setRegion(region, animated: true)
-//		
-//		//3
-//		
-
 	
 	}
 
